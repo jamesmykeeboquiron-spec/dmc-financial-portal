@@ -1,0 +1,523 @@
+/* ============================================================
+   DMC Financial Portal
+   css/components.css
+
+   PURPOSE: Every reusable UI component used across all pages.
+   Cards, buttons, badges, pills, tables, filters, toast, etc.
+
+   DO NOT put page-specific styles here.
+   Depends on: base.css, layout.css
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   Cards
+   The main surface container used everywhere.
+------------------------------------------------------------ */
+.card {
+  background: var(--color-surface);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.card-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-lg);
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.card-title-row .card-title {
+  margin-bottom: 0;
+}
+
+.card-link {
+  font-size: 12px;
+  color: var(--brand-primary);
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.card-link:hover {
+  opacity: 0.75;
+}
+
+
+/* ------------------------------------------------------------
+   KPI Metric Cards
+   The 4 summary number cards at the top of the dashboard.
+------------------------------------------------------------ */
+.kpi-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  border: 0.5px solid var(--color-border);
+}
+
+.kpi-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-sm);
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-value.income  { color: var(--color-income); }
+.kpi-value.expense { color: var(--color-expense); }
+.kpi-value.balance { color: var(--color-balance); }
+.kpi-value.net-pos { color: var(--color-income); }
+.kpi-value.net-neg { color: var(--color-expense); }
+
+
+/* ------------------------------------------------------------
+   Filter Bar
+   The date shortcut buttons + custom date range inputs.
+------------------------------------------------------------ */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+
+.filter-label {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+
+.filter-divider {
+  width: 0.5px;
+  height: 20px;
+  background: var(--color-border-strong);
+  margin: 0 var(--space-xs);
+  flex-shrink: 0;
+}
+
+/* Shortcut buttons: This month / Today / This week / All time */
+.btn-shortcut {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 5px 12px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-shortcut:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+.btn-shortcut.active {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+}
+
+/* Custom date range inputs */
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.date-range input[type="date"] {
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  transition: border-color var(--transition-fast);
+}
+
+.date-range input[type="date"]:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+.date-range-sep {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+
+/* ------------------------------------------------------------
+   Buttons
+------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 0.5px solid transparent;
+  white-space: nowrap;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-primary {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+}
+
+.btn-primary:hover { background: var(--brand-primary-dark); }
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+
+.btn-secondary:hover { background: var(--color-bg); }
+
+.btn-success {
+  background: var(--color-income);
+  color: #ffffff;
+}
+
+.btn-success:hover { background: #157a59; }
+
+.btn-full { width: 100%; }
+
+
+/* ------------------------------------------------------------
+   Form Elements
+------------------------------------------------------------ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.form-input {
+  padding: 9px 12px;
+  border: 0.5px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  transition: border-color var(--transition-fast);
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ------------------------------------------------------------
+   Badges & Pills
+   Small inline labels for status, urgency, categories.
+------------------------------------------------------------ */
+
+/* Base pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Glassy grey pill — used for days away, bank, amount in PDC */
+.pill-glass {
+  background: var(--color-glass-bg);
+  border: 0.5px solid var(--color-glass-border);
+  color: var(--color-text-secondary);
+}
+
+/* Status pills */
+.pill-income  { background: var(--color-income-bg);  color: var(--color-income);  border: 0.5px solid var(--color-income-border); }
+.pill-expense { background: var(--color-expense-bg); color: var(--color-expense); border: 0.5px solid var(--color-expense-border); }
+.pill-warning { background: var(--color-warning-bg); color: var(--color-warning); border: 0.5px solid var(--color-warning-border); }
+
+/* PDC amount pills — glass shape, colored text */
+.pill-amt-critical { background: var(--color-glass-bg); border: 0.5px solid var(--color-glass-border); color: var(--color-critical-amt); font-variant-numeric: tabular-nums; }
+.pill-amt-soon     { background: var(--color-glass-bg); border: 0.5px solid var(--color-glass-border); color: var(--color-soon-amt);     font-variant-numeric: tabular-nums; }
+.pill-amt-upcoming { background: var(--color-glass-bg); border: 0.5px solid var(--color-glass-border); color: var(--color-upcoming-amt); font-variant-numeric: tabular-nums; }
+
+
+/* ------------------------------------------------------------
+   Expense List
+   Used in the expense breakdown panel on the dashboard.
+------------------------------------------------------------ */
+.exp-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 0.5px solid var(--color-border);
+  font-size: 13px;
+}
+
+.exp-list-item:last-child { border-bottom: none; }
+
+.exp-list-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-text-secondary);
+}
+
+.exp-list-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.exp-list-value {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ------------------------------------------------------------
+   PDC / Cheques Panel
+   The urgency-grouped cheque summary on the dashboard.
+------------------------------------------------------------ */
+
+/* Outer summary row */
+.pdc-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.pdc-total-label { font-size: 12px; color: var(--color-text-secondary); }
+.pdc-total-sub   { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+.pdc-total-value { font-size: 24px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--color-text-primary); }
+
+/* Urgency group panels */
+.pdc-group {
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  border: 0.5px solid;
+}
+
+.pdc-group:last-child { margin-bottom: 0; }
+
+.pdc-group.critical { background: var(--color-critical-bg); border-color: var(--color-critical-border); }
+.pdc-group.soon     { background: var(--color-soon-bg);     border-color: var(--color-soon-border); }
+.pdc-group.upcoming { background: var(--color-upcoming-bg); border-color: var(--color-upcoming-border); }
+
+/* Group header */
+.pdc-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.pdc-group-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pdc-group-label.critical { color: var(--color-critical-text); }
+.pdc-group-label.soon     { color: var(--color-soon-text); }
+.pdc-group-label.upcoming { color: var(--color-upcoming-text); }
+
+.pdc-group-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.pdc-group-dot.critical { background: var(--color-critical-dot); }
+.pdc-group-dot.soon     { background: var(--color-soon-dot); }
+.pdc-group-dot.upcoming { background: var(--color-upcoming-dot); }
+
+.pdc-group-subtotal {
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.pdc-group-subtotal.critical { color: var(--color-critical-text); }
+.pdc-group-subtotal.soon     { color: var(--color-soon-text); }
+.pdc-group-subtotal.upcoming { color: var(--color-upcoming-text); }
+
+/* Cheque table inside group panel */
+.cheque-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+
+.cheque-table th {
+  text-align: left;
+  padding: 6px 8px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.cheque-table th:last-child { text-align: right; }
+
+.cheque-table td {
+  padding: 9px 8px;
+  vertical-align: middle;
+  transition: background var(--transition-fast);
+}
+
+.cheque-table td:last-child { text-align: right; }
+
+.cheque-payee {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* Table row backgrounds per group */
+.pdc-group.critical .cheque-table thead { background: rgba(180,100,100,0.10); border-bottom: 0.5px solid rgba(180,100,100,0.20); }
+.pdc-group.critical .cheque-table td   { background: rgba(180,100,100,0.04); border-bottom: 0.5px solid rgba(180,100,100,0.12); }
+.pdc-group.critical .cheque-table tr:last-child td { border-bottom: none; }
+.pdc-group.critical .cheque-table tr:hover td      { background: rgba(180,100,100,0.09); }
+
+.pdc-group.soon .cheque-table thead { background: rgba(180,150,80,0.10); border-bottom: 0.5px solid rgba(180,150,80,0.20); }
+.pdc-group.soon .cheque-table td   { background: rgba(180,150,80,0.04); border-bottom: 0.5px solid rgba(180,150,80,0.12); }
+.pdc-group.soon .cheque-table tr:last-child td { border-bottom: none; }
+.pdc-group.soon .cheque-table tr:hover td      { background: rgba(180,150,80,0.09); }
+
+.pdc-group.upcoming .cheque-table thead { background: rgba(80,160,90,0.10); border-bottom: 0.5px solid rgba(80,160,90,0.20); }
+.pdc-group.upcoming .cheque-table td   { background: rgba(80,160,90,0.04); border-bottom: 0.5px solid rgba(80,160,90,0.12); }
+.pdc-group.upcoming .cheque-table tr:last-child td { border-bottom: none; }
+.pdc-group.upcoming .cheque-table tr:hover td      { background: rgba(80,160,90,0.09); }
+
+
+/* ------------------------------------------------------------
+   Chart Wrapper
+   Gives Chart.js a fixed height container to render inside.
+------------------------------------------------------------ */
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.chart-wrap-sm { height: 160px; }
+.chart-wrap-lg { height: 300px; }
+
+
+/* ------------------------------------------------------------
+   Toast Notification
+   The small confirmation popup after saving an entry.
+------------------------------------------------------------ */
+.toast {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  background: var(--color-text-primary);
+  color: #ffffff;
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ------------------------------------------------------------
+   Empty State
+   Shown when a list or table has no data yet.
+------------------------------------------------------------ */
+.empty-state {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.empty-state i {
+  font-size: 28px;
+  display: block;
+  margin-bottom: var(--space-sm);
+  opacity: 0.35;
+}
+
+
+/* ------------------------------------------------------------
+   Greeting block — owner dashboard top
+------------------------------------------------------------ */
+.greeting-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.greeting-date {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 3px;
+}
