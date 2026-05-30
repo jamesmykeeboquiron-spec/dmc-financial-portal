@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Dashboard — DMC Financial Portal</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <!-- Styles — order matters -->
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/owner.css">
+</head>
+<body>
+
+  <!-- ======================================================
+       Top Navigation Bar
+  ====================================================== -->
+  <nav class="topbar" role="navigation" aria-label="Main navigation">
+    <a href="owner.html" class="brand">
+      <div class="brand-dot"></div>
+      <span class="brand-name">D' Mezzanine Cafe</span>
+      <span class="brand-sub">Financial Portal</span>
+    </a>
+    <div class="nav-links">
+      <a href="owner.html"   class="nav-link">Dashboard</a>
+      <a href="logs.html"    class="nav-link">Daily Logs</a>
+      <a href="monthly.html" class="nav-link">Monthly</a>
+      <a href="cheques.html" class="nav-link">Cheques</a>
+      <a href="entry.html"   class="nav-link nav-cta">+ Entry</a>
+    </div>
+  </nav>
+
+  <!-- ======================================================
+       Page Content
+  ====================================================== -->
+  <main class="container">
+
+    <!-- Greeting -->
+    <div class="dashboard-header">
+      <div>
+        <div class="greeting-name" id="greeting-text">Good morning, Boqs</div>
+        <div class="greeting-date" id="greeting-date"></div>
+      </div>
+      <div class="last-updated" id="last-updated"></div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar" role="group" aria-label="Date filter">
+      <span class="filter-label">Showing:</span>
+      <button class="btn-shortcut" data-filter="month">This month</button>
+      <button class="btn-shortcut" data-filter="today">Today</button>
+      <button class="btn-shortcut" data-filter="week">This week</button>
+      <button class="btn-shortcut" data-filter="all">All time</button>
+      <div class="filter-divider" aria-hidden="true"></div>
+      <div class="date-range">
+        <input type="date" id="filter-from" aria-label="From date">
+        <span class="date-range-sep">—</span>
+        <input type="date" id="filter-to" aria-label="To date">
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="grid-4 kpi-grid" role="region" aria-label="Key financial figures">
+      <div class="kpi-card">
+        <div class="kpi-label">Gross income</div>
+        <div class="kpi-value income" id="kpi-income">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total expenses</div>
+        <div class="kpi-value expense" id="kpi-expenses">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Net income</div>
+        <div class="kpi-value" id="kpi-net">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cash balance</div>
+        <div class="kpi-value balance" id="kpi-balance">—</div>
+      </div>
+    </div>
+
+    <!-- Main Grid: Chart + Expense Breakdown -->
+    <div class="dashboard-main-grid">
+
+      <!-- Income vs Expenses Chart -->
+      <div class="card">
+        <div class="card-title-row">
+          <div class="card-title">Income vs expenses</div>
+          <div class="chart-legend">
+            <div class="chart-legend-item">
+              <div class="chart-legend-dot income"></div>
+              Income
+            </div>
+            <div class="chart-legend-item">
+              <div class="chart-legend-dot expense"></div>
+              Expenses
+            </div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chart-monthly"
+                  role="img"
+                  aria-label="Monthly income vs expenses bar chart">
+            Monthly income and expense comparison.
+          </canvas>
+        </div>
+      </div>
+
+      <!-- Expense Breakdown -->
+      <div class="card">
+        <div class="card-title">Expenses this period</div>
+        <div id="exp-breakdown-list">
+          <div class="empty-state">
+            <i class="ti ti-chart-bar" aria-hidden="true"></i>
+            No expense data for this period
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PDC / Cheques Panel -->
+    <div class="card pdc-panel" role="region" aria-label="Cheques due in the next 10 days">
+      <div class="card-title-row">
+        <div class="card-title">Cheques / PDC — next 10 days</div>
+        <a href="cheques.html" class="card-link">See all cheques →</a>
+      </div>
+
+      <!-- PDC Total Summary -->
+      <div class="pdc-total-row">
+        <div>
+          <div class="pdc-total-label">Total to be claimed</div>
+          <div class="pdc-total-sub">
+            <span id="pdc-count">—</span>
+            &nbsp;·&nbsp;
+            <span id="pdc-banks">—</span>
+          </div>
+        </div>
+        <div class="pdc-total-value" id="pdc-total">—</div>
+      </div>
+
+      <!-- PDC Groups — rendered by owner.js -->
+      <div id="pdc-group-critical"></div>
+      <div id="pdc-group-soon"></div>
+      <div id="pdc-group-upcoming"></div>
+
+    </div>
+
+  </main>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ======================================================
+       Scripts — order matters
+       1. Chart.js library
+       2. Data layer
+       3. Shared UI utilities
+       4. Chart functions
+       5. Page-specific logic (always last)
+  ====================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/owner.js"></script>
+
+</body>
+</html>
