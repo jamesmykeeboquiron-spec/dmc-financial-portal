@@ -1,0 +1,121 @@
+/* ============================================================
+   DMC Financial Portal
+   css/owner.css
+
+   PURPOSE: Styles specific to the owner dashboard (owner.html)
+   only. Nothing in here is shared with other pages.
+
+   DO NOT put shared components or layout styles here.
+   Depends on: base.css, layout.css, components.css
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   Dashboard greeting row
+   Name on the left, last-updated time on the right.
+------------------------------------------------------------ */
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+}
+
+.last-updated {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+
+/* ------------------------------------------------------------
+   KPI grid spacing
+   Adds bottom margin after the 4-card row.
+------------------------------------------------------------ */
+.kpi-grid {
+  margin-bottom: var(--space-xl);
+}
+
+
+/* ------------------------------------------------------------
+   Chart legend
+   Custom inline legend below or above charts.
+------------------------------------------------------------ */
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.chart-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.chart-legend-dot.income  { background: #5DCAA5; }
+.chart-legend-dot.expense { background: #F09595; }
+
+
+/* ------------------------------------------------------------
+   Expense breakdown list
+   The colored dot + category name + amount list in the
+   right panel of the main grid.
+------------------------------------------------------------ */
+.exp-breakdown-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-md);
+}
+
+/* Dot colors for each expense category */
+.dot-salaries   { background: #7F77DD; }
+.dot-purchases  { background: #5DCAA5; }
+.dot-rental     { background: #378ADD; }
+.dot-utilities  { background: #EF9F27; }
+.dot-benefits   { background: #D85A30; }
+.dot-meals      { background: #E24B4A; }
+.dot-pcf        { background: #BA7517; }
+.dot-taxes      { background: #888780; }
+.dot-sundries   { background: #b4b2a9; }
+
+
+/* ------------------------------------------------------------
+   Main dashboard grid
+   Chart on left (2fr), expense breakdown on right (1fr).
+   Sits between the KPI row and the PDC panel.
+------------------------------------------------------------ */
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   PDC panel spacing
+   Adds a little breathing room above the PDC panel.
+------------------------------------------------------------ */
+.pdc-panel {
+  margin-top: var(--space-xs);
+}
