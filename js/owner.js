@@ -311,10 +311,70 @@
 
 
   /* ----------------------------------------------------------
+     Digital clock — ticks every second
+  ---------------------------------------------------------- */
+  function startClock() {
+    function tick() {
+      var now    = new Date();
+      var h      = now.getHours();
+      var m      = now.getMinutes();
+      var s      = now.getSeconds();
+      var ampm   = h >= 12 ? 'PM' : 'AM';
+      var h12    = h % 12 || 12;
+      var mm     = String(m).padStart(2, '0');
+      var ss     = String(s).padStart(2, '0');
+
+      DMC_UI.setText('clock-time', h12 + ':' + mm + ':' + ss);
+      DMC_UI.setText('clock-ampm', ampm);
+      DMC_UI.setText('clock-date', new Date().toLocaleDateString('en-PH', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      }));
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+
+  /* ----------------------------------------------------------
+     Dark mode toggle
+     Saves preference to localStorage so it persists.
+  ---------------------------------------------------------- */
+  function initDarkMode() {
+    var STORAGE = 'dmc_dark_mode';
+    var btn     = document.getElementById('btn-dark-toggle');
+    var icon    = document.getElementById('dark-icon');
+
+    function applyMode(dark) {
+      if (dark) {
+        document.body.classList.add('dark');
+        if (icon) icon.className = 'ti ti-sun';
+      } else {
+        document.body.classList.remove('dark');
+        if (icon) icon.className = 'ti ti-moon';
+      }
+    }
+
+    /* Load saved preference */
+    var saved = localStorage.getItem(STORAGE);
+    applyMode(saved === 'true');
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var isDark = document.body.classList.contains('dark');
+        applyMode(!isDark);
+        localStorage.setItem(STORAGE, String(!isDark));
+      });
+    }
+  }
+
+
+  /* ----------------------------------------------------------
      Init — runs when the page loads
   ---------------------------------------------------------- */
   function init() {
     DMC_UI.setActiveNav();
+    initDarkMode();
+    startClock();
     renderGreeting();
     setDefaultFilter();
     wireFilters();
