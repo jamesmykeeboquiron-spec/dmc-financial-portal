@@ -2,7 +2,7 @@
    DMC Financial Portal
    css/owner.css
 
-   PURPOSE: Styles specific to the owner dashboard (owner.html)
+   PURPOSE: Styles specific to the owner dashboard (pages/owner.html)
    only. Nothing in here is shared with other pages.
 
    DO NOT put shared components or layout styles here.
@@ -11,8 +11,8 @@
 
 
 /* ------------------------------------------------------------
-   Dashboard greeting row
-   Name on the left, last-updated time on the right.
+   Dashboard header row
+   Greeting on the left, clock on the right.
 ------------------------------------------------------------ */
 .dashboard-header {
   display: flex;
@@ -21,15 +21,76 @@
   margin-bottom: var(--space-xl);
 }
 
-.last-updated {
+
+/* ------------------------------------------------------------
+   Digital clock
+------------------------------------------------------------ */
+.clock-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.clock {
+  font-size: 30px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--clock-color);
+  transition: color 0.3s ease;
+}
+
+.clock-ampm {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 4px;
+  color: var(--color-text-secondary);
+}
+
+.clock-date {
   font-size: 11px;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
+  text-align: right;
+}
+
+
+/* ------------------------------------------------------------
+   Dark mode toggle button in nav
+------------------------------------------------------------ */
+.btn-dark-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all var(--transition-fast);
+  margin-left: var(--space-xs);
+}
+
+.btn-dark-toggle:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+}
+
+body.dark .btn-dark-toggle {
+  border-color: var(--brand-primary-border);
+  color: var(--brand-primary);
+}
+
+body.dark .btn-dark-toggle:hover {
+  background: var(--brand-primary-light);
 }
 
 
 /* ------------------------------------------------------------
    KPI grid spacing
-   Adds bottom margin after the 4-card row.
 ------------------------------------------------------------ */
 .kpi-grid {
   margin-bottom: var(--space-xl);
@@ -38,13 +99,11 @@
 
 /* ------------------------------------------------------------
    Chart legend
-   Custom inline legend below or above charts.
 ------------------------------------------------------------ */
 .chart-legend {
   display: flex;
   align-items: center;
   gap: var(--space-lg);
-  margin-bottom: var(--space-md);
   flex-wrap: wrap;
 }
 
@@ -68,20 +127,8 @@
 
 
 /* ------------------------------------------------------------
-   Expense breakdown list
-   The colored dot + category name + amount list in the
-   right panel of the main grid.
+   Expense category dot colors
 ------------------------------------------------------------ */
-.exp-breakdown-title {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-md);
-}
-
-/* Dot colors for each expense category */
 .dot-salaries   { background: #7F77DD; }
 .dot-purchases  { background: #5DCAA5; }
 .dot-rental     { background: #378ADD; }
@@ -94,9 +141,8 @@
 
 
 /* ------------------------------------------------------------
-   Main dashboard grid
-   Chart on left (2fr), expense breakdown on right (1fr).
-   Sits between the KPI row and the PDC panel.
+   Dashboard main grid
+   Chart left (2fr), expense breakdown right (1fr).
 ------------------------------------------------------------ */
 .dashboard-main-grid {
   display: grid;
@@ -106,15 +152,19 @@
 }
 
 @media (max-width: 900px) {
-  .dashboard-main-grid {
-    grid-template-columns: 1fr;
-  }
+  .dashboard-main-grid { grid-template-columns: 1fr; }
+  .clock { font-size: 22px; }
+}
+
+@media (max-width: 600px) {
+  .dashboard-header { flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .clock-block { align-items: flex-start; }
+  .clock-date  { text-align: left; }
 }
 
 
 /* ------------------------------------------------------------
-   PDC panel spacing
-   Adds a little breathing room above the PDC panel.
+   PDC panel top spacing
 ------------------------------------------------------------ */
 .pdc-panel {
   margin-top: var(--space-xs);
