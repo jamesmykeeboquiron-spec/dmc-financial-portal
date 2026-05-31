@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Owner Dashboard — DMC Financial Portal</title>
-
-  <!-- Icons -->
   <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@latest/tabler-icons.min.css">
-
-  <!-- Styles — order matters -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/components.css">
@@ -16,9 +12,6 @@
 </head>
 <body>
 
-  <!-- ======================================================
-       Top Navigation Bar
-  ====================================================== -->
   <nav class="topbar" role="navigation" aria-label="Main navigation">
     <a href="owner.html" class="brand">
       <div class="brand-dot"></div>
@@ -31,21 +24,26 @@
       <a href="monthly.html" class="nav-link">Monthly</a>
       <a href="cheques.html" class="nav-link">Cheques</a>
       <a href="entry.html"   class="nav-link nav-cta">+ Entry</a>
+      <button class="btn-dark-toggle" id="btn-dark-toggle" aria-label="Toggle dark mode">
+        <i class="ti ti-moon" id="dark-icon" aria-hidden="true"></i>
+      </button>
     </div>
   </nav>
 
-  <!-- ======================================================
-       Page Content
-  ====================================================== -->
   <main class="container">
 
-    <!-- Greeting -->
+    <!-- Greeting + Clock -->
     <div class="dashboard-header">
       <div>
         <div class="greeting-name" id="greeting-text">Good morning, Boqs</div>
         <div class="greeting-date" id="greeting-date"></div>
       </div>
-      <div class="last-updated" id="last-updated"></div>
+      <div class="clock-block">
+        <div class="clock">
+          <span id="clock-time">--:--:--</span><span class="clock-ampm" id="clock-ampm"></span>
+        </div>
+        <div class="clock-date" id="clock-date"></div>
+      </div>
     </div>
 
     <!-- Filter Bar -->
@@ -85,32 +83,22 @@
 
     <!-- Main Grid: Chart + Expense Breakdown -->
     <div class="dashboard-main-grid">
-
-      <!-- Income vs Expenses Chart -->
       <div class="card">
         <div class="card-title-row">
           <div class="card-title">Income vs expenses</div>
           <div class="chart-legend">
             <div class="chart-legend-item">
-              <div class="chart-legend-dot income"></div>
-              Income
+              <div class="chart-legend-dot income"></div>Income
             </div>
             <div class="chart-legend-item">
-              <div class="chart-legend-dot expense"></div>
-              Expenses
+              <div class="chart-legend-dot expense"></div>Expenses
             </div>
           </div>
         </div>
         <div class="chart-wrap">
-          <canvas id="chart-monthly"
-                  role="img"
-                  aria-label="Monthly income vs expenses bar chart">
-            Monthly income and expense comparison.
-          </canvas>
+          <canvas id="chart-monthly" role="img" aria-label="Monthly income vs expenses bar chart">Monthly income and expense comparison.</canvas>
         </div>
       </div>
-
-      <!-- Expense Breakdown -->
       <div class="card">
         <div class="card-title">Expenses this period</div>
         <div id="exp-breakdown-list">
@@ -120,49 +108,32 @@
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- PDC / Cheques Panel -->
+    <!-- PDC Panel -->
     <div class="card pdc-panel" role="region" aria-label="Cheques due in the next 10 days">
       <div class="card-title-row">
         <div class="card-title">Cheques / PDC — next 10 days</div>
         <a href="cheques.html" class="card-link">See all cheques →</a>
       </div>
-
-      <!-- PDC Total Summary -->
       <div class="pdc-total-row">
         <div>
           <div class="pdc-total-label">Total to be claimed</div>
           <div class="pdc-total-sub">
-            <span id="pdc-count">—</span>
-            &nbsp;·&nbsp;
-            <span id="pdc-banks">—</span>
+            <span id="pdc-count">—</span>&nbsp;·&nbsp;<span id="pdc-banks">—</span>
           </div>
         </div>
         <div class="pdc-total-value" id="pdc-total">—</div>
       </div>
-
-      <!-- PDC Groups — rendered by owner.js -->
       <div id="pdc-group-critical"></div>
       <div id="pdc-group-soon"></div>
       <div id="pdc-group-upcoming"></div>
-
     </div>
 
   </main>
 
-  <!-- Toast notification -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- ======================================================
-       Scripts — order matters
-       1. Chart.js library
-       2. Data layer
-       3. Shared UI utilities
-       4. Chart functions
-       5. Page-specific logic (always last)
-  ====================================================== -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/ui.js"></script>
