@@ -12,7 +12,6 @@
 
 /* ------------------------------------------------------------
    Reset
-   Removes inconsistent browser defaults so we start clean.
 ------------------------------------------------------------ */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -53,73 +52,68 @@ table {
 
 
 /* ------------------------------------------------------------
-   CSS Variables — Design Tokens
-   Change a value here and it updates everywhere.
+   CSS Variables — Light Mode (default)
 ------------------------------------------------------------ */
 :root {
 
   /* Brand */
-  --brand-primary:       #D85A30;
-  --brand-primary-dark:  #993C1D;
-  --brand-primary-light: #fff3ef;
-  --brand-primary-border:#f5c4b3;
+  --brand-primary:        #D85A30;
+  --brand-primary-dark:   #993C1D;
+  --brand-primary-light:  #fff3ef;
+  --brand-primary-border: #f5c4b3;
 
   /* Neutrals */
-  --color-bg:            #f5f4f0;
-  --color-surface:       #ffffff;
-  --color-surface-raised:#ffffff;
-  --color-border:        rgba(0, 0, 0, 0.08);
-  --color-border-strong: rgba(0, 0, 0, 0.14);
+  --color-bg:             #f5f4f0;
+  --color-surface:        #ffffff;
+  --color-border:         rgba(0, 0, 0, 0.08);
+  --color-border-strong:  rgba(0, 0, 0, 0.14);
 
   /* Text */
-  --color-text-primary:  #1a1a18;
-  --color-text-secondary:#888780;
-  --color-text-muted:    #b4b2a9;
+  --color-text-primary:   #1a1a18;
+  --color-text-secondary: #888780;
+  --color-text-muted:     #b4b2a9;
 
-  /* Semantic — Income / Positive */
-  --color-income:        #1D9E75;
-  --color-income-bg:     #EAF3DE;
-  --color-income-border: #c4dfa0;
+  /* Semantic */
+  --color-income:         #1D9E75;
+  --color-income-bg:      #EAF3DE;
+  --color-income-border:  #c4dfa0;
+  --color-expense:        #E24B4A;
+  --color-expense-bg:     #FCEBEB;
+  --color-expense-border: #f5b8b8;
+  --color-warning:        #BA7517;
+  --color-warning-bg:     #FEF6E4;
+  --color-warning-border: #f5d98f;
+  --color-balance:        #BA7517;
 
-  /* Semantic — Expense / Negative */
-  --color-expense:       #E24B4A;
-  --color-expense-bg:    #FCEBEB;
-  --color-expense-border:#f5b8b8;
-
-  /* Semantic — Warning / Amber */
-  --color-warning:       #BA7517;
-  --color-warning-bg:    #FEF6E4;
-  --color-warning-border:#f5d98f;
-
-  /* Semantic — Balance */
-  --color-balance:       #BA7517;
-
-  /* PDC Urgency — Critical (1–2 days) */
-  --color-critical-text: #6b2828;
-  --color-critical-bg:   rgba(180, 100, 100, 0.06);
-  --color-critical-border:rgba(180, 100, 100, 0.18);
-  --color-critical-dot:  #b85c5c;
-  --color-critical-amt:  #8a3030;
-
-  /* PDC Urgency — Soon (3–7 days) */
-  --color-soon-text:     #6b4e10;
-  --color-soon-bg:       rgba(180, 150, 80, 0.06);
-  --color-soon-border:   rgba(180, 150, 80, 0.18);
-  --color-soon-dot:      #b89040;
-  --color-soon-amt:      #7a5410;
-
-  /* PDC Urgency — Upcoming (8–10 days) */
-  --color-upcoming-text: #1e4f20;
-  --color-upcoming-bg:   rgba(80, 160, 90, 0.06);
-  --color-upcoming-border:rgba(80, 160, 90, 0.18);
-  --color-upcoming-dot:  #50965a;
-  --color-upcoming-amt:  #246628;
+  /* PDC Urgency */
+  --color-critical-text:   #6b2828;
+  --color-critical-bg:     rgba(180, 100, 100, 0.06);
+  --color-critical-border: rgba(180, 100, 100, 0.18);
+  --color-critical-dot:    #b85c5c;
+  --color-critical-amt:    #8a3030;
+  --color-soon-text:       #6b4e10;
+  --color-soon-bg:         rgba(180, 150, 80, 0.06);
+  --color-soon-border:     rgba(180, 150, 80, 0.18);
+  --color-soon-dot:        #b89040;
+  --color-soon-amt:        #7a5410;
+  --color-upcoming-text:   #1e4f20;
+  --color-upcoming-bg:     rgba(80, 160, 90, 0.06);
+  --color-upcoming-border: rgba(80, 160, 90, 0.18);
+  --color-upcoming-dot:    #50965a;
+  --color-upcoming-amt:    #246628;
 
   /* Glass pill */
-  --color-glass-bg:      rgba(120, 120, 120, 0.1);
-  --color-glass-border:  rgba(120, 120, 120, 0.2);
+  --color-glass-bg:     rgba(120, 120, 120, 0.1);
+  --color-glass-border: rgba(120, 120, 120, 0.2);
 
-  /* Spacing scale */
+  /* Topbar */
+  --topbar-bg:     rgba(255, 255, 255, 0.95);
+  --topbar-border: rgba(0, 0, 0, 0.08);
+
+  /* Clock */
+  --clock-color:   #1a1a18;
+
+  /* Spacing */
   --space-xs:   4px;
   --space-sm:   8px;
   --space-md:   12px;
@@ -128,13 +122,10 @@ table {
   --space-2xl:  32px;
 
   /* Border radius */
-  --radius-sm:  6px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
-  --radius-pill:999px;
-
-  /* Shadows */
-  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 999px;
 
   /* Transitions */
   --transition-fast: 0.15s ease;
@@ -142,31 +133,97 @@ table {
 
 
 /* ------------------------------------------------------------
-   Typography
+   CSS Variables — Dark Mode
+   Applied when <body> has class "dark"
+------------------------------------------------------------ */
+body.dark {
+
+  /* Brand — gold from DMC logo */
+  --brand-primary:        #D4AA3C;
+  --brand-primary-dark:   #b8911f;
+  --brand-primary-light:  rgba(212, 170, 60, 0.12);
+  --brand-primary-border: rgba(212, 170, 60, 0.25);
+
+  /* Neutrals */
+  --color-bg:             #0e0d0b;
+  --color-surface:        rgba(255, 255, 255, 0.05);
+  --color-border:         rgba(255, 255, 255, 0.09);
+  --color-border-strong:  rgba(255, 255, 255, 0.14);
+
+  /* Text */
+  --color-text-primary:   #e8e6e0;
+  --color-text-secondary: #7a7870;
+  --color-text-muted:     #4a4844;
+
+  /* Semantic */
+  --color-income:         #5DCAA5;
+  --color-income-bg:      rgba(93, 202, 165, 0.1);
+  --color-income-border:  rgba(93, 202, 165, 0.2);
+  --color-expense:        #F09595;
+  --color-expense-bg:     rgba(240, 149, 149, 0.1);
+  --color-expense-border: rgba(240, 149, 149, 0.2);
+  --color-warning:        #D4AA3C;
+  --color-warning-bg:     rgba(212, 170, 60, 0.1);
+  --color-warning-border: rgba(212, 170, 60, 0.2);
+  --color-balance:        #D4AA3C;
+
+  /* PDC Urgency */
+  --color-critical-text:   #c47a7a;
+  --color-critical-bg:     rgba(180, 100, 100, 0.07);
+  --color-critical-border: rgba(180, 100, 100, 0.15);
+  --color-critical-dot:    #c47a7a;
+  --color-critical-amt:    #c47a7a;
+  --color-soon-text:       #c4a055;
+  --color-soon-bg:         rgba(180, 150, 80, 0.07);
+  --color-soon-border:     rgba(180, 150, 80, 0.15);
+  --color-soon-dot:        #c4a055;
+  --color-soon-amt:        #c4a055;
+  --color-upcoming-text:   #6aac6c;
+  --color-upcoming-bg:     rgba(80, 160, 90, 0.07);
+  --color-upcoming-border: rgba(80, 160, 90, 0.15);
+  --color-upcoming-dot:    #6aac6c;
+  --color-upcoming-amt:    #6aac6c;
+
+  /* Glass pill */
+  --color-glass-bg:     rgba(255, 255, 255, 0.08);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+
+  /* Topbar */
+  --topbar-bg:     #141210;
+  --topbar-border: rgba(212, 170, 60, 0.18);
+
+  /* Clock — gold in dark mode */
+  --clock-color:   #D4AA3C;
+}
+
+
+/* ------------------------------------------------------------
+   Body
 ------------------------------------------------------------ */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 14px;
   line-height: 1.6;
   color: var(--color-text-primary);
-  background: var(--color-bg);
+  background-color: var(--color-bg);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
+/* ------------------------------------------------------------
+   Typography
+------------------------------------------------------------ */
 h1 { font-size: 22px; font-weight: 500; line-height: 1.2; }
 h2 { font-size: 18px; font-weight: 500; line-height: 1.3; }
 h3 { font-size: 16px; font-weight: 500; line-height: 1.4; }
-
 p  { font-size: 14px; line-height: 1.6; }
 
 
 /* ------------------------------------------------------------
    Utility classes
-   Small single-purpose helpers used across all pages.
 ------------------------------------------------------------ */
-
-/* Text colors */
 .text-primary   { color: var(--color-text-primary); }
 .text-secondary { color: var(--color-text-secondary); }
 .text-muted     { color: var(--color-text-muted); }
@@ -174,20 +231,13 @@ p  { font-size: 14px; line-height: 1.6; }
 .text-expense   { color: var(--color-expense); }
 .text-warning   { color: var(--color-warning); }
 .text-brand     { color: var(--brand-primary); }
+.text-left      { text-align: left; }
+.text-center    { text-align: center; }
+.text-right     { text-align: right; }
+.fw-400         { font-weight: 400; }
+.fw-500         { font-weight: 500; }
+.tabular        { font-variant-numeric: tabular-nums; }
 
-/* Text alignment */
-.text-left   { text-align: left; }
-.text-center { text-align: center; }
-.text-right  { text-align: right; }
-
-/* Font weight */
-.fw-400 { font-weight: 400; }
-.fw-500 { font-weight: 500; }
-
-/* Numbers */
-.tabular { font-variant-numeric: tabular-nums; }
-
-/* Visibility */
 .sr-only {
   position: absolute;
   width: 1px;
